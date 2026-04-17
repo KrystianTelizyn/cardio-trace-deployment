@@ -1,0 +1,3 @@
+versions.env
+envs/*.env
+!data/rr_records.db
