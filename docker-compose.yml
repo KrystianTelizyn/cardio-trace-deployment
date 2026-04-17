@@ -1,0 +1,43 @@
+services:
+  api:
+    image: cardio-trace-backend-api:${API_VERSION}
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file:
+      - ./envs/api.env
+
+  gateway:
+    image: cardio-trace-gateway:${GATEWAY_VERSION}
+    env_file:
+      - ./envs/gateway.env
+
+  db:
+    image: postgres:17
+    restart: unless-stopped
+    env_file:
+      - ./envs/db.env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+  
+  broker:
+    image: eclipse-mosquitto:latest
+
+  
+  iot-simulation:
+    image: cardio-trace-iot-simulation:${IOT_SIMULATION_VERSION}
+    env_file:
+      - ./envs/iot-simulation.env
+    volumes:
+      - ./data:/app/data
+    depends_on:
+      - broker
+
+volumes:
+  postgres_data:
+    name: cardio-trace-pgdata

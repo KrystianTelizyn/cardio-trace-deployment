@@ -1,0 +1,22 @@
+services:
+  api:
+    image: cardio-trace-backend-api:dev
+    ports:
+      - "8002:8000"
+  gateway:
+    image: cardio-trace-gateway:dev
+    ports:
+      - "8000:8000"
+  
+  iot-simulation:
+    image: cardio-trace-iot-simulation:dev
+    ports:
+      - "8001:8000"
+  
+  broker:
+    image: eclipse-mosquitto:latest
+    ports:
+      - "1883:1883"
+  db:
+    ports:
+      - "5432:5432"
