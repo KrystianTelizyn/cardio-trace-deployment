@@ -12,6 +12,14 @@ services:
     env_file:
       - ./envs/gateway.env
 
+  graphql:
+    image: cardio-trace-graphql:${GRAPHQL_VERSION}
+    env_file:
+      - ./envs/graphql.env
+    depends_on:
+      db:
+        condition: service_healthy
+
   db:
     image: postgres:17
     restart: unless-stopped

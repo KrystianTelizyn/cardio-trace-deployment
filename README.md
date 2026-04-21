@@ -41,6 +41,7 @@ Base stack (`docker-compose.yml`) defines:
 - `gateway` (edge/API gateway)
 - `db` (PostgreSQL 17, persistent volume)
 - `broker` (Eclipse Mosquitto MQTT broker)
+- `graphql` (Hasura GraphQL engine)
 - `iot-simulation` (simulated wearable telemetry publisher)
 
 ### Compose Layering Model
@@ -72,6 +73,7 @@ The `Makefile` combines files as:
    - `versions.env`
    - `envs/api.env`
    - `envs/gateway.env`
+   - `envs/graphql.env`
    - `envs/db.env`
    - `envs/iot-simulation.env`
 
@@ -120,6 +122,7 @@ The `Makefile` combines files as:
 - `versions.env`: image tags used by compose interpolation (`API_VERSION`, `GATEWAY_VERSION`, `IOT_SIMULATION_VERSION`)
 - `envs/api.env`: API runtime settings (DB connection, debug flags, allowed hosts, app secret)
 - `envs/gateway.env`: gateway/auth/provider integration settings (Auth0, app URLs, RBAC mode)
+- `envs/graphql.env`: Hasura GraphQL engine settings (database URL, console enabled, dev mode)
 - `envs/db.env`: PostgreSQL bootstrap credentials and database name
 - `envs/iot-simulation.env`: simulator wiring (MQTT host/port, rr config path, records DB path)
 

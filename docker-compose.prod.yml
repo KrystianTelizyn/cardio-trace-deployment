@@ -11,6 +11,7 @@ services:
     image: 719030484884.dkr.ecr.eu-north-1.amazonaws.com/cardio-trace-iot-simulation:${IOT_SIMULATION_VERSION}
     ports:
       - "8001:8000"
-  
+  graphql:
+    image: 719030484884.dkr.ecr.eu-north-1.amazonaws.com/cardio-trace-graphql:${GRAPHQL_VERSION}
   broker:
   db:
