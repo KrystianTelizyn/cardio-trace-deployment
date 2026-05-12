@@ -33,6 +33,26 @@ services:
       timeout: 5s
       retries: 10
   
+  redis:
+    image: redis:8.4
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+  redisinsight:
+    image: redis/redisinsight:latest
+    depends_on:
+      - redis
+  
+  sensor-hub:
+    image: cardio-trace-sensor-hub:${SENSOR_HUB_VERSION}
+    env_file:
+      - ./envs/sensor-hub.env
+    depends_on:
+      - broker
+      - redis
+
   broker:
     image: eclipse-mosquitto:latest
 

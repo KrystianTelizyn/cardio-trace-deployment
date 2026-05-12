@@ -15,9 +15,17 @@ services:
     image: cardio-trace-iot-simulation:dev
     ports:
       - "8001:8000"
-  
+  sensor-hub:
+    image: cardio-trace-sensor-hub:dev
+    ports:
+      - "8003:8000"
+  redis:
+    ports:
+      - "6379:6379"
+  redisinsight:
+    ports:
+      - "5540:5540"
   broker:
-    image: eclipse-mosquitto:latest
     ports:
       - "1883:1883"
   db:
