@@ -1,0 +1,17 @@
+services:
+  api:
+    image: 719030484884.dkr.ecr.eu-north-1.amazonaws.com/cardio-trace-backend-api:${API_VERSION}
+
+  gateway:
+    image: 719030484884.dkr.ecr.eu-north-1.amazonaws.com/cardio-trace-gateway:${GATEWAY_VERSION}
+    ports:
+      - "8000:8000"
+
+  iot-simulation:
+    image: 719030484884.dkr.ecr.eu-north-1.amazonaws.com/cardio-trace-iot-simulation:${IOT_SIMULATION_VERSION}
+    ports:
+      - "8001:8000"
+  graphql:
+    image: 719030484884.dkr.ecr.eu-north-1.amazonaws.com/cardio-trace-graphql:${GRAPHQL_VERSION}
+  broker:
+  db:

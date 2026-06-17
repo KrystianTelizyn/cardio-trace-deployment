@@ -1,0 +1,33 @@
+services:
+  api:
+    image: cardio-trace-backend-api:dev
+    ports:
+      - "8002:8000"
+  gateway:
+    image: cardio-trace-gateway:dev
+    ports:
+      - "8000:8000"
+  graphql:
+    image: cardio-trace-graphql:dev
+    ports:
+      - "8080:8080"
+  iot-simulation:
+    image: cardio-trace-iot-simulation:dev
+    ports:
+      - "8001:8000"
+  sensor-hub:
+    image: cardio-trace-sensor-hub:dev
+    ports:
+      - "8003:8000"
+  redis:
+    ports:
+      - "6379:6379"
+  redisinsight:
+    ports:
+      - "5540:5540"
+  broker:
+    ports:
+      - "1883:1883"
+  db:
+    ports:
+      - "5432:5432"
